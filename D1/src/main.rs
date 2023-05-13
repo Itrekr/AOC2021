@@ -1,3 +1,4 @@
+/// Crates for reading file content
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -9,15 +10,6 @@ fn main() {
     let result_p2 = count(&numbers_p2);
     println!("Result part 2 is {}",result_p2)
 }
-
-/// for indexnr in lijst
-/// if (indexnr+2) exist:
-///     value = indexnr(cor_val) + (indexnr+1) + (indexnr+2)
-///     if prev value < *value
-///     ...
-
-/// if true: aantal=aantal+1
-/// set prev_value value
 
 fn get_numbers() -> std::io::Result<Vec<u16>> {
     let file:File = File::open("src/ms.txt")?;
@@ -35,8 +27,11 @@ fn get_numbers() -> std::io::Result<Vec<u16>> {
 
 /// Returns amount of increasing measurements as a 16bit unsigned integer
 fn count(numbers:&Vec<u16>) -> u16 {
+    /// Set first iteration of prev_value to max value of 16bit unsigned integer and make it mutable
     let mut prev_value = u16::MAX;
+    /// Set first iteration of result to 0 and make it mutable
     let mut result = 0;
+    /// Compare each number (except the first in the index) to the number before and add 1 to the result every time the number is bigger than the previous one.
     for (index,value) in numbers.iter().enumerate() {
         if index == 0 {
             println!("{} (N/A - no previous measurement)",*value);
