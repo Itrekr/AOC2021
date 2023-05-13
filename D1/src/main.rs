@@ -27,11 +27,11 @@ fn get_numbers() -> std::io::Result<Vec<u16>> {
 
 /// Returns amount of increasing measurements as a 16bit unsigned integer
 fn count(numbers:&Vec<u16>) -> u16 {
-    /// Set first iteration of prev_value to max value of 16bit unsigned integer and make it mutable
+    // Set first iteration of prev_value to max value of 16bit unsigned integer and make it mutable
     let mut prev_value = u16::MAX;
-    /// Set first iteration of result to 0 and make it mutable
+    // Set first iteration of result to 0 and make it mutable
     let mut result = 0;
-    /// Compare each number (except the first in the index) to the number before and add 1 to the result every time the number is bigger than the previous one.
+    // Compare each number (except the first in the index) to the number before and add 1 to the result every time the number is bigger than the previous one.
     for (index,value) in numbers.iter().enumerate() {
         if index == 0 {
             println!("{} (N/A - no previous measurement)",*value);
