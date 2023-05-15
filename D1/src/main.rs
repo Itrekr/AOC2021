@@ -14,14 +14,13 @@ fn main() {
 fn get_numbers() -> std::io::Result<Vec<u16>> {
     let file:File = File::open("src/ms.txt")?;
     let reader:BufReader<File> = BufReader::new(file);
-
+    // Vec::new() creates a new vector
     let mut numbers:Vec<u16> = Vec::new();
     for line in reader.lines() {
         if let Ok(number) = line?.parse::<u16>() {
             numbers.push(number);
         }
     }
-
     Ok(numbers)
 }
 
@@ -34,6 +33,7 @@ fn count(numbers:&Vec<u16>) -> u16 {
     // Compare each number (except the first in the index) to the number before and add 1 to the result every time the number is bigger than the previous one.
     for (index,value) in numbers.iter().enumerate() {
         if index == 0 {
+            // * is used to dereference the borrowed u16
             println!("{} (N/A - no previous measurement)",*value);
         }
         else if prev_value < *value {
@@ -51,6 +51,7 @@ fn count(numbers:&Vec<u16>) -> u16 {
     return result;
 }
 
+// -> defines the return type
 fn sum_numbers(numbers:Vec<u16>) -> Vec<u16> {
    let mut result = Vec::new();
    for index in 0..(numbers.len()-2) {
