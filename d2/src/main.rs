@@ -17,7 +17,7 @@ fn solve_p1() -> i32 {
         }
     let result = submarine.horizontal_position * submarine.depth;
     return result;
-    }
+}
 
 fn solve_p2() -> i32 {
     let file:File = File::open("src/input.txt").unwrap();
